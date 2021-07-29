@@ -1,0 +1,9 @@
+#za_stampanje{
+    display:none;
+    margin: 10px;
+}
+
+title {
+    display: none !important;
+    color: yellow;
+}

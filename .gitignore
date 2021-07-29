@@ -1,0 +1,17 @@
+### Composer ###
+composer.phar
+vendor/
+
+### NetBeans ###
+**/nbproject/
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Email config file ###
+classes/config.php
