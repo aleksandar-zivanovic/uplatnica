@@ -1,9 +1,4 @@
 <?php
-if (isset($_POST['edit_id'])) {
-    $edit_id = $_POST['edit_id'];
-}
-
-
 /* SNIMANJE I EDITOVANJE UPLATNICE */
 if (isset($_POST['snimi']) || isset($_POST['stampaj']) || isset($_POST['izmeni'])) {
     $db = new Database();
@@ -57,7 +52,7 @@ if (isset($_POST['snimi']) || isset($_POST['stampaj']) || isset($_POST['izmeni']
     } else {
 
         /* SNIMANJE */
-        if (!isset($_POST['snimi']) && !isset($edit_id)) {
+        if (isset($_POST['snimi']) && !isset($_SESSION['edit_id'])) {
             $sql = "INSERT INTO sacuvane_uplatnice(su_id_uplatioca, su_uplatilac, su_svrha, su_primalac, su_sifra, su_valuta, su_iznos, su_racun_primaoca, su_model, su_poz_na_br) VALUES($su_id_uplatioca, '$cl_su_uplatilac', '$cl_su_svrha', '$cl_su_primalac', $cl_su_sifra, '$cl_su_valuta', '$cl_su_iznos', '$cl_su_racun_primaoca', '$cl_su_model', '$cl_su_poz_na_br')";
             if ($db->query($sql)) {
                 echo '<div class="alert alert-success alert-dismissible fade show text-center" role="alert"> <strong>Uspesno ste snimili uplatnicu.</strong> Sve svoje snimljene uplatnice mozete pogledati <a href="pregled.php">OVDE</a><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
@@ -66,7 +61,7 @@ if (isset($_POST['snimi']) || isset($_POST['stampaj']) || isset($_POST['izmeni']
 
 
         /* EDITOVANJE */
-        if (isset($_SESSION['edit_id'])) {
+        if (isset($_SESSION['edit_id']) && !empty($_SESSION['edit_id'])) {
             $edit_id = $_SESSION['edit_id'];
             $sql = "UPDATE sacuvane_uplatnice SET "
                     . "su_id_uplatioca  = '$su_id_uplatioca', "
