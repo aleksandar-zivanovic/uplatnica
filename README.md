@@ -7,7 +7,7 @@ Popunite nalog za uplatu, odstampajte ga i odnesite u postu.
 
 # Instalacija aplikacije:
 - podesite SMTP u classes/config.php
-- podesite bazu u db_config.php
+- podesite bazu u classes/database.php
 - MySQL baza se nalazi u folderu baza/
 
 ---
@@ -18,3 +18,4 @@ Popunite nalog za uplatu, odstampajte ga i odnesite u postu.
 - mogucnost snimanja popunjene uplatnice (samo za registrovane korisnike)
 - izmena profila od strane registrovanog korisnika
 - automatski povracaj zaboravljene sifre
+- pretraga uplatnica po jedinstvenom kodu za svaku uplatnicu
