@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['pogledaj'])) :
-    
+
     $ime_uplatioca = trim(htmlspecialchars(filter_input(INPUT_POST, 'uplatilac', FILTER_SANITIZE_STRING)));
     $svrha_uplate = trim(htmlspecialchars(filter_input(INPUT_POST, 'svrha_uplate', FILTER_SANITIZE_STRING)));
     $primalac = trim(htmlspecialchars(filter_input(INPUT_POST, 'primalac', FILTER_SANITIZE_STRING)));
@@ -138,12 +138,14 @@ if (isset($_POST['pogledaj'])) :
                     <button type="obrisi_podatke" name="ponisti" class="btn btn-danger form-control col-md-2 float-right">Ponisti</button>
 
                     </form>
-                </div>  <!-- KRAJ div-a u kome je forma uplatnice -->
-                    <?php
-                    if (!isset($_SESSION['email_uplatioca'])):
-                        echo '<div class=" container-fluid alert alert-warning alert-dismissible fade show text-center" role="alert">Da biste <strong>snimili uplatnicu</strong> kliknite <a href="login.php">OVDE</a> da biste se prijavili na sajt.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><br><br>';
-                    endif;
-                    ?>
+                </div>  <!-- KRAJ div-a u kome su button-i -->
+
+                <?php
+                if (!isset($_SESSION['email_uplatioca'])):
+                    echo '<div class=" container-fluid alert alert-warning alert-dismissible fade show text-center" role="alert">Da biste <strong>snimili uplatnicu</strong> kliknite <a href="login.php">OVDE</a> da biste se prijavili na sajt.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><br><br>';
+                endif;
+                ?>
+
             </div>  <!-- END of row-->
 
         </div>

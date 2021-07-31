@@ -1,6 +1,11 @@
 <?php
 
-require_once 'db_config.php';
+//include_once 'db_config.php';
+
+const DB_HOST = "localhost";
+const DB_USER = "root";
+const DB_PASS = "";
+const DB_NAME = "uplatnica";
 
 class Database {
 

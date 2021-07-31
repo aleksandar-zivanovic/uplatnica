@@ -16,6 +16,12 @@ class Db_object {
         $sql = "SELECT * FROM " . static::$table . " WHERE {$param} = '{$value}';";
         return $db->query($sql);
     }
+    
+    public static function find_all_by_like_param($param, $value) {
+        global $db;
+        $sql = "SELECT * FROM " . static::$table . " WHERE {$param} LIKE '" . $value . "%';";
+        return $db->query($sql);
+    }
 
     public static function instanciranje_objekta($sql) {
         global $db;

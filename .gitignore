@@ -12,6 +12,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+test.php
 
 ### Email config file ###
 classes/config.php

@@ -53,10 +53,18 @@ if (isset($_POST['snimi']) || isset($_POST['stampaj']) || isset($_POST['izmeni']
 
         /* SNIMANJE */
         if (isset($_POST['snimi']) && !isset($_SESSION['edit_id'])) {
-            $sql = "INSERT INTO sacuvane_uplatnice(su_id_uplatioca, su_uplatilac, su_svrha, su_primalac, su_sifra, su_valuta, su_iznos, su_racun_primaoca, su_model, su_poz_na_br) VALUES($su_id_uplatioca, '$cl_su_uplatilac', '$cl_su_svrha', '$cl_su_primalac', $cl_su_sifra, '$cl_su_valuta', '$cl_su_iznos', '$cl_su_racun_primaoca', '$cl_su_model', '$cl_su_poz_na_br')";
-            if ($db->query($sql)) {
-                echo '<div class="alert alert-success alert-dismissible fade show text-center" role="alert"> <strong>Uspesno ste snimili uplatnicu.</strong> Sve svoje snimljene uplatnice mozete pogledati <a href="pregled.php">OVDE</a><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-            } // END of ---> if ($db->query($sql)) {
+
+            $uplatnica = new Uplatnica;
+            $uplatnica->kod_uplatnice = uniqid();
+
+            while ($uplatnica->provera_duplog_koda() > 0) {
+                $uplatnica->kod_uplatnice = uniqid();
+            }
+
+                $sql = "INSERT INTO sacuvane_uplatnice(kod_uplatnice, su_id_uplatioca, su_uplatilac, su_svrha, su_primalac, su_sifra, su_valuta, su_iznos, su_racun_primaoca, su_model, su_poz_na_br) VALUES('$uplatnica->kod_uplatnice', $su_id_uplatioca, '$cl_su_uplatilac', '$cl_su_svrha', '$cl_su_primalac', $cl_su_sifra, '$cl_su_valuta', '$cl_su_iznos', '$cl_su_racun_primaoca', '$cl_su_model', '$cl_su_poz_na_br')";
+                if ($db->query($sql)) {
+                    echo '<div class="alert alert-success alert-dismissible fade show text-center" role="alert"> <strong>Uspesno ste snimili uplatnicu.</strong> Sve svoje snimljene uplatnice mozete pogledati <a href="pregled.php">OVDE</a><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                } // END of ---> if ($db->query($sql)) {
         } // END of ---> if (isset($_POST['snimi'])) {
 
 

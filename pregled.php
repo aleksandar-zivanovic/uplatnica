@@ -35,7 +35,7 @@ if (isset($_POST['obrisi_upatu'])) {
                 <table class="table table-bordered table-hover table-sm">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">Kod uplatnice</th>
                             <th scope="col">Platilac</th>
                             <th scope="col">Svrha uplate</th>
                             <th scope="col">Primalac</th>
@@ -53,7 +53,7 @@ if (isset($_POST['obrisi_upatu'])) {
 while ($row = $slanje->fetch_assoc()):
     ?>
                             <tr>
-                                <th scope="row"><?php echo $row['id_uplate']; ?></th>
+                                <td scope="row"><?php echo $row['kod_uplatnice']; ?></td>
                                 <td><?php echo $row['su_uplatilac']; ?></td>
                                 <td><?php echo $row['su_svrha']; ?></td>
                                 <td><?php echo $row['su_primalac']; ?></td>
