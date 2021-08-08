@@ -48,16 +48,40 @@ class User extends Db_object {
         return $pass_hash;
     }
 
-    public static function register_user($username, $password_uplatioca, $email_uplatioca, $ime_uplatioca, $prezime_uplatioca, $adresa_uplatioca, $postanski_br_uplatioca, $mesto_uplatioca) {
+    public static function check_username($username) {
         global $db;
-        $pass_hash = password_hash($password_uplatioca, PASSWORD_BCRYPT, ['cost' => 10]);
-        $sql = "INSERT INTO " . static::$table . " ";
-        $sql .= "(username, password_uplatioca, email_uplatioca, ime_uplatioca, prezime_uplatioca, adresa_uplatioca, postanski_br_uplatioca, mesto_uplatioca) ";
-        $sql .= "VALUES('{$username}', '{$pass_hash}', '{$email_uplatioca}', '{$ime_uplatioca}', '{$prezime_uplatioca}', '{$adresa_uplatioca}', '{$postanski_br_uplatioca}', '{$mesto_uplatioca}');";
-        if ($db->query($sql)) {
-            return $reg_msg = "Uspesno ste se registrovali na sajt!";
+        $sql_username = "SELECT * FROM uplatilac WHERE username = '{$username}'";
+        $result = $db->query($sql_username);
+        $num_rows = $result->num_rows;
+        if ($num_rows > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
+    
+    public static function check_email($email) {
+        global $db;
+        $sql_email = "SELECT * FROM uplatilac WHERE email_uplatioca = '{$email}'";
+        $result = $db->query($sql_email);
+        $num_rows = $result->num_rows;
+        if ($num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function register_user($username, $password_uplatioca, $email_uplatioca, $ime_uplatioca, $prezime_uplatioca, $adresa_uplatioca, $postanski_br_uplatioca, $mesto_uplatioca) {
+            global $db;
+            $pass_hash = password_hash($password_uplatioca, PASSWORD_BCRYPT, ['cost' => 10]);
+            $sql = "INSERT INTO " . static::$table . " ";
+            $sql .= "(username, password_uplatioca, email_uplatioca, ime_uplatioca, prezime_uplatioca, adresa_uplatioca, postanski_br_uplatioca, mesto_uplatioca) ";
+            $sql .= "VALUES('{$username}', '{$pass_hash}', '{$email_uplatioca}', '{$ime_uplatioca}', '{$prezime_uplatioca}', '{$adresa_uplatioca}', '{$postanski_br_uplatioca}', '{$mesto_uplatioca}');";
+            if ($db->query($sql)) {
+                return $reg_msg = "Uspesno ste se registrovali na sajt!";
+            }
+        }
 
     public static function update_user($username, $password_uplatioca, $email_uplatioca, $ime_uplatioca, $prezime_uplatioca, $adresa_uplatioca, $postanski_br_uplatioca, $mesto_uplatioca, $id_uplatioca) {
         global $db;
